@@ -10,7 +10,8 @@ public class App {
 	public static void main(String[] args) throws Exception {
 
 		// Fazer uma conexão HTTP e buscar os top 250 filmes
-		String url = "https://api.mocki.io/v2/549a5d8b";
+		String apiKey = System.getenv("API_KEY");
+		String url = "https://api.mocki.io/v2/" + apiKey;
 		URI endereco = URI.create(url);
 
 		HttpClient client = HttpClient.newHttpClient();
@@ -26,9 +27,22 @@ public class App {
 
 		// Exibir e manipular os dados
 		for (Map<String, String> filme : listaDeFilmes) {
+			System.out.print("\u001b[48;2;42;122;228m");
+			System.out.print("\u001b[38;2;255;255;255m");
 			System.out.println(filme.get("title"));
+			System.out.print("\u001b[m");
+
+			String imdbRating = filme.get("imDbRating");
+			Double imdbRatingDouble = Double.parseDouble(imdbRating);
+			long roundRating = Math.round(imdbRatingDouble);
+			System.out.println(roundRating);
 			System.out.println(filme.get("image"));
 			System.out.println(filme.get("imDbRating"));
+
+			for (int i = 0; i < roundRating; i++) {
+				System.out.print("\u2b50");
+			}
+
 			System.out.println();
 		}
 	}
