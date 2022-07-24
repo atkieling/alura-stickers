@@ -1,7 +1,7 @@
-import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
 
@@ -11,9 +11,7 @@ public class GeradoraDeFigurinhas {
 
 	public void cria(InputStream InputStream, String nomeArquivo) throws Exception {
 
-        // Leitura da imagem
-        //InputStream InputStream = new FileInputStream(new File("imagemEntrada/filme.jpg"));
-        //InputStream InputStream = new URL("https://imersao-java-apis.s3.amazonaws.com/TopMovies_7.jpg").openStream();
+		// Leitura da imagem
 		BufferedImage imagemOriginal = ImageIO.read(InputStream);
 
 		// Cria nova imagem em memória com transparência e com tamanho novo
@@ -38,11 +36,6 @@ public class GeradoraDeFigurinhas {
 		graphics.drawString("TOP!", x, y);
 
 		// Escrever a nova imagem em um arquivo
-		ImageIO.write(novaImagem, "png", new File("imagemSaida/" + nomeArquivo));
+		ImageIO.write(novaImagem, "png", new File(nomeArquivo));
 	}
-
-    //public static void main(String[] args) throws Exception {
-    //var geradora = new GeradoraDeFigurinhas();
-    //geradora.cria();
-    //}
 }
